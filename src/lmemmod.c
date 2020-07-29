@@ -256,6 +256,7 @@ LUAMEMMOD_API int luaopen_memory (lua_State *L) {
 }
 
 #ifdef _KERNEL
+#ifndef LUNATIK_UNUSED
 MODULE_LICENSE("Dual MIT/BSD");
 MODULE_DESCRIPTION("Library for manipulation of memory areas in Lua");
 
@@ -285,6 +286,7 @@ static void __exit modexit (void) {
 
 module_init(modinit);
 module_exit(modexit);
+#endif /* LUNATIK_UNUSED */
 #endif /* _KERNEL */
 
 /*
@@ -549,7 +551,7 @@ static KOption getoption (Header *h, const char **fmt, int *size) {
 ** 'psize' is filled with option's size, 'notoalign' with its
 ** alignment requirements.
 ** Local variable 'size' gets the size to be aligned. (Kpadal option
-** always gets its full alignment, other options are limited by 
+** always gets its full alignment, other options are limited by
 ** the maximum alignment ('maxalign'). Kchar option needs no alignment
 ** despite its size.
 */
